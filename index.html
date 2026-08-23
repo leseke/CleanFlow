@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CleanFlow — Nettoyage CSV en quelques secondes</title>
+  <meta name="description" content="Démo d'automatisation de nettoyage de données CSV, 100% locale dans le navigateur." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="logo">CF</span><span>CleanFlow</span></div><span class="privacy">100% local · vos données ne quittent pas le navigateur</span></header>
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">AUTOMATISATION MÉTIER · DEMO-001</span>
+        <h1>Transformez un CSV sale en données exploitables.</h1>
+        <p>Espaces parasites, doublons, emails incohérents, téléphones et dates : CleanFlow nettoie automatiquement vos exports clients et génère un rapport de qualité.</p>
+        <div class="actions"><label class="btn primary">Importer un CSV<input id="fileInput" type="file" accept=".csv,text/csv" hidden></label><button class="btn secondary" id="sampleBtn">Charger l'exemple</button></div>
+        <p class="hint">Aucun compte. Aucun serveur. Aucun upload.</p>
+      </div>
+      <div class="value-card">
+        <span>Exemple de gain</span><strong>2 h / semaine</strong><p>de nettoyage manuel supprimées = ~100 h/an récupérées.</p>
+      </div>
+    </section>
+
+    <section class="workspace hidden" id="workspace">
+      <div class="section-head"><div><span class="eyebrow">RAPPORT</span><h2 id="fileName">Fichier chargé</h2></div><div class="actions"><button class="btn secondary" id="reportBtn">Rapport JSON</button><button class="btn primary" id="downloadBtn">Télécharger le CSV propre</button></div></div>
+      <div class="stats" id="stats"></div>
+      <div class="quality" id="quality"></div>
+      <div class="grid2">
+        <article class="panel"><div class="panel-head"><h3>Avant</h3><span id="beforeCount"></span></div><div class="table-wrap"><table id="beforeTable"></table></div></article>
+        <article class="panel"><div class="panel-head"><h3>Après</h3><span id="afterCount"></span></div><div class="table-wrap"><table id="afterTable"></table></div></article>
+      </div>
+      <article class="panel report-panel"><h3>Ce que l'automatisation a corrigé</h3><div id="reportList" class="report-list"></div></article>
+    </section>
+
+    <section class="sales">
+      <span class="eyebrow">CAS D'USAGE CLIENT</span>
+      <h2>Ce type d'outil s'adapte à votre processus.</h2>
+      <div class="cards"><article><strong>Exports CRM</strong><p>Nettoyage et dédoublonnage avant import.</p></article><article><strong>Facturation</strong><p>Normalisation des données avant génération.</p></article><article><strong>Reporting</strong><p>Préparation automatique de fichiers hebdomadaires.</p></article><article><strong>Migration</strong><p>Transformation de données entre deux logiciels.</p></article></div>
+    </section>
+  </main>
+  <footer>CleanFlow — démonstration portfolio · JavaScript natif · aucune dépendance externe</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
