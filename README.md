@@ -1,38 +1,63 @@
-# CleanFlow — DEMO-001
+# CleanFlow — CSV Data Cleaning & Quality Control
 
-> Démonstration commerciale : transformer un export CSV imparfait en données propres, exploitables et documentées.
+> A client-style demonstration of turning an imperfect CSV export into clean, reviewable and documented data.
 
-## Pourquoi ce projet existe
+## Client outcome
 
-CleanFlow n'est pas une « todo list » de portfolio. Il démontre une compétence vendable aux TPE/PME : **automatiser un nettoyage de données répétitif**.
+CleanFlow targets a common small-business workflow: a CRM, customer, billing or migration export needs the same manual cleanup every week before it can be reused.
 
-Cas typiques : export CRM, fichier clients, préparation avant migration, reporting, facturation ou synchronisation entre outils.
+The tool lets the user load a CSV, immediately compare **before / after**, review what was corrected, identify values that still require human attention, and export both the cleaned dataset and a structured quality report.
 
-## Démo
+## Delivery workflow
+
+```text
+Messy CSV export
+      ↓
+Delimiter detection + safe CSV parsing
+      ↓
+Whitespace / email / phone / date normalization
+      ↓
+Duplicate detection
+      ↓
+Before / After preview
+      ↓
+Quality status: READY or REVIEW REQUIRED
+      ↓
+Clean CSV + JSON quality report
+```
+
+## What the user gets
+
+- automatic `,`, `;` or tab delimiter detection;
+- quoted-field CSV parsing;
+- whitespace cleanup;
+- email normalization and validation;
+- French phone normalization and validation;
+- date normalization to `YYYY-MM-DD`;
+- duplicate removal prioritizing email/phone identity;
+- before/after preview;
+- correction counters;
+- explicit `READY` / `REVIEW REQUIRED` quality status;
+- cleaned CSV export;
+- structured JSON quality report with source filename, timestamp, summary, transformations, validation counts, detected delimiter and headers;
+- local browser processing: the imported file is not uploaded to an application server;
+- no external runtime dependency for the cleaning engine.
+
+## Try the demo
 
 ```bash
 npm run serve
-# puis http://localhost:8080
 ```
 
-Ou ouvrir le projet via un serveur statique / GitHub Pages. Le traitement est 100% côté navigateur : aucun fichier n'est envoyé à un serveur.
+Then open the local address shown by the server and click **Charger l'exemple**, or import a CSV of your own.
 
-## Fonctionnalités
+The included sample is synthetic and intentionally contains formatting issues so the before/after workflow can be demonstrated immediately.
 
-- import CSV ;
-- détection automatique `,`, `;` ou tabulation ;
-- parsing des champs entre guillemets ;
-- nettoyage des espaces ;
-- normalisation emails ;
-- normalisation des téléphones français ;
-- normalisation des dates vers `YYYY-MM-DD` ;
-- détection des formats invalides ;
-- dédoublonnage prioritairement par email/téléphone ;
-- aperçu avant/après ;
-- rapport de qualité ;
-- export CSV nettoyé ;
-- export JSON du rapport ;
-- aucune dépendance externe.
+## Quality philosophy
+
+CleanFlow does **not** silently invent replacement values for malformed data. Recognized values are normalized when the transformation is deterministic; unresolved formats remain visible and are counted in the quality report for human review.
+
+That distinction matters in real client work: automation should reduce repetitive cleanup without hiding uncertainty.
 
 ## Tests
 
@@ -40,29 +65,20 @@ Ou ouvrir le projet via un serveur statique / GitHub Pages. Le traitement est 10
 npm test
 ```
 
-Les tests couvrent le parsing CSV, les guillemets, dates, téléphones, dédoublonnage et export.
+The automated tests cover CSV parsing, quoted fields, dates, French phone numbers, deduplication and export behavior. The repository also includes GitHub Actions CI. fileciteturn238file0L1-L2
 
-## Positionnement commercial
+## Typical client adaptations
 
-> « Vous nettoyez encore manuellement un fichier Excel/CSV chaque semaine ? Je peux transformer ce processus en un outil qui le fait en quelques secondes. »
-
-Le projet peut servir de base à une prestation sur mesure : règles métier spécifiques, Excel XLSX, base de données, API, génération de rapport, validation humaine ou intégration à un workflow existant.
-
-## Ce que le projet démontre
-
-- compréhension d'un problème métier ;
-- conception d'une UX simple ;
-- traitement de données ;
-- robustesse du parsing ;
-- règles de normalisation explicites ;
-- refus d'inventer une donnée invalide ;
-- tests automatisés ;
-- livraison sans dépendances ni infrastructure.
+This pattern can be adapted to CRM exports, customer databases, billing preparation, migrations, recurring reporting inputs, custom business validation rules, XLSX files, APIs or database workflows.
 
 ## Stack
 
-JavaScript ES modules, HTML, CSS, Node.js uniquement pour les tests et le serveur local.
+JavaScript ES modules · HTML · CSS · Node.js for tests/local serving.
 
-## Portfolio
+## Scope
 
-Ce projet complète **Chroniques**, qui sert de preuve de profondeur technique C#/.NET. CleanFlow sert de preuve de **capacité à transformer un besoin d'entreprise en solution immédiatement compréhensible**.
+This repository is a portfolio demonstration using synthetic sample data. Production rules should always be adapted to the client's fields, country formats and business requirements before delivery.
+
+---
+
+**Still cleaning the same spreadsheet manually every week?** This workflow can be adapted to the exact columns, validation rules and output format of an existing business process.
